@@ -88,20 +88,27 @@ public class ConcatLogsTask extends Task {
                 for (String src : ds.getIncludedFiles()) {
                     final File logFile = new File(dir, src);
                     String line;
-                    BufferedReader input =  new BufferedReader(new FileReader(logFile));
 
-                    int lineNum = 0;
-                    while ((line = input.readLine()) != null) {
-                        if (lineNum == 0) {
-                            if (fileNum == 0) {
+                    BufferedReader input = null;
+                    try {
+                        input =  new BufferedReader(new FileReader(logFile));
+                        int lineNum = 0;
+                        while ((line = input.readLine()) != null) {
+                            if (lineNum == 0) {
+                                if (fileNum == 0) {
+                                    output.printf("%s%n", line);
+                                }
+                            } else {
                                 output.printf("%s%n", line);
                             }
-                        } else {
-                            output.printf("%s%n", line);
+                            lineNum++;
                         }
-                        lineNum++;
+                        fileNum++;
+                    } finally {
+                        if (input != null) {
+                            input.close();
+                        }
                     }
-                    fileNum++;
                 }
             }
         } catch (IOException e) {
@@ -128,10 +135,10 @@ public class ConcatLogsTask extends Task {
 
     /**
      * Handles the <code>failonerror</code> attribute.
-     * @param failOnError the attribute value converted to a boolean
+     * @param failOnErrorVal the attribute value converted to a boolean
      */
-    public void setFailonerror(final boolean failOnError) {
-        this.failOnError = failOnError;
+    public void setFailonerror(final boolean failOnErrorVal) {
+        this.failOnError = failOnErrorVal;
     }
 
     /**
