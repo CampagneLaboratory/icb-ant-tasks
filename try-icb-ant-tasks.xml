@@ -2,7 +2,7 @@
 
 <project default="concat-logs">
 
-    <property name="lib" value="lib"/>
+    <import file="build.xml" taskname="jar"/>
 
     <taskdef resource="edu/cornell/med/icb/ant/antlib.xml" onerror="fail">
         <classpath>
@@ -10,10 +10,20 @@
         </classpath>
     </taskdef>
 
-    <target name="concat-logs">
-        <concat-logs output="try-concat-logs-output.log">
+    <target name="concat-logs" depends="jar">
+        <echo message="!!!"/>
+        <echo message="!!! If you haven't run 'ant jar' before calling this task,"/>
+        <echo message="!!! it will fail the first time. Run it again and it will work."/>
+        <echo message="!!! This is because the icb-ant-tasks.jar file didn't exist"/>
+        <echo message="!!! When the ant task was started, so the taskdef above did nothing."/>
+        <echo message="!!! Once the jar file is built the taskdef will work and this"/>
+        <echo message="!!! target should run correctly."/>
+        <echo message="!!!"/>
+        <mkdir dir="test-results"/>
+        <concat-logs output="test-results/try-concat-logs-output.log">
             <fileset dir="test-data" includes="*.log"/>
         </concat-logs>
+        <echo message="Created new log file 'test-results/try-concat-logs-output.log' from the files in 'test-data/*.log'"/>
     </target>
 
 </project>

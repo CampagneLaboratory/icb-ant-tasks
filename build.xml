@@ -54,7 +54,7 @@
         <delete dir="${javadocs}"/>
         <delete file="${jarfile}"/>
         <delete dir="${logs}"/>
-        <delete file="try-concat-logs-output.log"/>
+        <delete file="test-results/try-concat-logs-output.log"/>
     </target>
 
     <target name="jar" depends="compile" description="Make a jar">
