@@ -1,0 +1,7 @@
+<!--
+This file defines the mapping of the desired custom ant task name vs
+the class the implements the custom ant task.
+-->
+<antlib>
+    <typedef name="concat-logs" classname="edu.cornell.med.icb.ant.ConcatLogsTask"/>
+</antlib>

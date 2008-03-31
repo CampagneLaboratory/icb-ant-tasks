@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<project default="jar">
+    <tstamp>
+        <!-- current time for buildstamp purposes -->
+        <format property="buildstamp" pattern="yyyyMMddHHmmss"/>
+    </tstamp>
+    <tstamp>
+        <format property="year" pattern="yyyy"/>
+    </tstamp>
+
+    <property name="src" location="src"/>
+    <property name="classes" location="classes"/>
+    <property name="lib" value="lib"/>
+    <property name="debug" value="on"/>
+    <property name="deprecation" value="false"/>
+    <property name="jarfile" value="ICBAntTasks.jar"/>
+    <property name="ant.build.javac.source" value="1.5"/>
+    <property name="ant.build.javac.target" value="1.5"/>
+
+    <path id="compile.classpath">
+        <fileset dir="${lib}">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+    <target name="init">
+        <tstamp/>
+        <mkdir dir="${classes}"/>
+    </target>
+
+    <target name="jar" depends="compile" description="Make a jar">
+        <jar jarfile="${jarfile}" basedir="${classes}">
+            <manifest>
+                <attribute name="Specification-Title" value="ICBAntTasks"/>
+                <attribute name="Specification-Vendor"
+                           value="Institute for Computational Biomedicine (ICB), Weill Medical College of Cornell University"/>
+                <attribute name="Implementation-Version" value="${buildstamp}"/>
+                <attribute name="Implementation-Vendor"
+                           value="Recompiled at the Institute for Computational Biomedicine (ICB), Weill Medical College of Cornell University"/>
+            </manifest>
+        </jar>
+    </target>
+
+    <target name="compile" depends="init" description="Compile Source code">
+        <javac srcdir="${src}" destdir="${classes}" debug="${debug}" deprecation="${deprecation}">
+            <!--<compilerarg value="-Xlint"/>-->
+            <classpath refid="compile.classpath"/>
+        </javac>
+        <copy todir="${classes}/edu/cornell/med/icb/ant">
+            <fileset dir="${src}/edu/cornell/med/icb/ant">
+                <include name="*.xml"/>
+            </fileset>
+        </copy>
+    </target>
+</project>

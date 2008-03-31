@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+
+<project default="concat-logs">
+
+    <property name="lib" value="lib"/>
+
+    <taskdef resource="edu/cornell/med/icb/ant/antlib.xml" onerror="fail">
+        <classpath>
+            <pathelement location="ICBAntTasks.jar"/>
+        </classpath>
+    </taskdef>
+
+    <target name="concat-logs">
+        <concat-logs output="somefile.log">
+            <fileset dir="logs" includes="*.log"/>
+        </concat-logs>
+    </target>
+
+</project>

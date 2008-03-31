@@ -1,0 +1,3 @@
+<antlib>
+    <typedef name="concat-logs" classname="edu.cornell.med.icb.ant.ConcatLogsTask"/>
+</antlib>
