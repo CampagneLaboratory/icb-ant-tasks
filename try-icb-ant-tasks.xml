@@ -6,7 +6,7 @@
 
     <taskdef resource="edu/cornell/med/icb/ant/antlib.xml" onerror="fail">
         <classpath>
-            <pathelement location="ICBAntTasks.jar"/>
+            <pathelement location="icb-ant-tasks.jar"/>
         </classpath>
     </taskdef>
 
