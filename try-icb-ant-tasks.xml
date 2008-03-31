@@ -12,7 +12,7 @@
 
     <target name="concat-logs">
         <concat-logs output="somefile.log">
-            <fileset dir="logs" includes="*.log"/>
+            <fileset dir="test-data" includes="*.log"/>
         </concat-logs>
     </target>
 
