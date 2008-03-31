@@ -11,7 +11,7 @@
     </taskdef>
 
     <target name="concat-logs">
-        <concat-logs output="somefile.log">
+        <concat-logs output="try-concat-logs-output.log">
             <fileset dir="test-data" includes="*.log"/>
         </concat-logs>
     </target>

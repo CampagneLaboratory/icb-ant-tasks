@@ -27,7 +27,13 @@
     <path id="compile.classpath">
         <fileset dir="${lib}">
             <include name="*.jar"/>
+            <include name="ant/*.jar"/>
         </fileset>
+    </path>
+
+    <path id="classpath">
+        <pathelement location="${classes}"/>
+        <path refid="compile.classpath"/>
     </path>
 
     <import file="testsupport/build.xml"/>
@@ -48,6 +54,7 @@
         <delete dir="${javadocs}"/>
         <delete file="${jarfile}"/>
         <delete dir="${logs}"/>
+        <delete file="try-concat-logs-output.log"/>
     </target>
 
     <target name="jar" depends="compile" description="Make a jar">
@@ -88,7 +95,6 @@
             <classpath>
                 <path refid="compile.classpath"/>
                 <pathelement location="${classes}"/>
-                <pathelement location="${lib}/ant/ant.jar"/>
             </classpath>
             <bottom>
                 <![CDATA[<i>Copyright &#169; 2005-${year} Institute for Computational Biomedicine, All Rights Reserved.</i>]]>
@@ -96,4 +102,7 @@
         </javadoc>
     </target>
 
+    <target name="cruisecontrol" depends="clean, cobertura-setup, findbugs,
+                  test, jar, javadocs, pmd, cpd, checkstyle, cobertura-report"
+            description="Run CruiseControl Build and Tests"/>
 </project>
