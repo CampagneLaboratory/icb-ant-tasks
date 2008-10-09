@@ -34,7 +34,7 @@ import java.util.LinkedList;
 
 /**
  * Ant task to concatenate log files. This task assumes that each log file has a header line
- * and that each of the log files being concatonated has the same (or equivalent) header
+ * and that each of the log files being concatenated has the same (or equivalent) header
  * line. The header line from the first log file will be kept, all subsequent log files
  * will skip writing the first line of the file.
  */

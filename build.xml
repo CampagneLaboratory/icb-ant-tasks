@@ -13,8 +13,6 @@
     <property name="src" location="src"/>
     <property name="javadocs" location="javadocs"/>
     <property name="logs" location="logs"/>
-    <property name="test-src" location="test-src"/>
-    <property name="test-results" location="test-results"/>
     <property name="jarfile" value="icb-ant-tasks.jar"/>
 
     <!-- compiler and javadoc settings -->
@@ -43,10 +41,6 @@
         <mkdir dir="${classes}"/>
         <!--  Create the logs directory -->
         <mkdir dir="${logs}"/>
-        <!-- Create directory for test results -->
-        <mkdir dir="${test-results}"/>
-        <mkdir dir="${test-results}/html"/>
-
     </target>
 
     <target name="clean" depends="testsupport.clean" description="Cleans up the directory">
@@ -54,7 +48,6 @@
         <delete dir="${javadocs}"/>
         <delete file="${jarfile}"/>
         <delete dir="${logs}"/>
-        <delete file="test-results/try-concat-logs-output.log"/>
     </target>
 
     <target name="jar" depends="compile" description="Make a jar">
@@ -97,7 +90,7 @@
                 <pathelement location="${classes}"/>
             </classpath>
             <bottom>
-                <![CDATA[<i>Copyright &#169; 2005-${year} Institute for Computational Biomedicine, All Rights Reserved.</i>]]>
+                <![CDATA[<i>Copyright &#169; ${year} Institute for Computational Biomedicine, All Rights Reserved.</i>]]>
             </bottom>
         </javadoc>
     </target>

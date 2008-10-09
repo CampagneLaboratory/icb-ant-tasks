@@ -4,4 +4,5 @@ the class the implements the custom ant task.
 -->
 <antlib>
     <typedef name="concat-logs" classname="edu.cornell.med.icb.ant.ConcatLogsTask"/>
+    <typedef name="version-info" classname="edu.cornell.med.icb.ant.VersionInfoTask"/>
 </antlib>
